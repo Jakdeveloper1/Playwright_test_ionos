@@ -39,9 +39,9 @@ test.describe.serial('Cloud cases', () => {
         await page.getByText('Manage').click();
         await page.getByRole('link', { name: 'Clouds' }).click();
         const row = page.locator('tr', { hasText: randomID });
-        await row.locator('.easy-checkbox label').click();
+        //await row.locator('.easy-checkbox label').click();
         
-        //await page.getByRole('row', { name: 'testCloud IONOS 1234 Not' }).locator('label').click();
+        await page.getByRole('row', { name: 'test' }).locator('label').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Validate', { exact: true }).click();
         await page.getByRole('textbox', { name: 'Email *' }).click();
@@ -75,20 +75,23 @@ test.describe.serial('Cloud cases', () => {
     
     });
 
-    test('delete a cloud', async ({ page }) => {
-            await page.getByText('Manage').click();
-            await page.getByRole('link', { name: 'Clouds' }).click();
-            const row = page.locator('tr', { hasText: randomID });
-            await row.locator('.easy-checkbox label').click();
-            await page.getByRole('button', { name: 'ACTIONS ' }).click();
+    //Note: Do not run the delete cloud as server.spec.js will require test cloud from it
 
 
-            await page.getByText('Delete').click();
-            await page.getByRole('button', { name: 'DELETE' }).click();
-            await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
-            await page.locator('#delete-confirmation-btn').click();
+// test('delete a cloud', async ({ page }) => {
+    //         await page.getByText('Manage').click();
+    //         await page.getByRole('link', { name: 'Clouds' }).click();
+    //         const row = page.locator('tr', { hasText: randomID });
+    //         await row.locator('.easy-checkbox label').click();
+    //         await page.getByRole('button', { name: 'ACTIONS ' }).click();
+
+
+    //         await page.getByText('Delete').click();
+    //         await page.getByRole('button', { name: 'DELETE' }).click();
+    //         await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
+    //         await page.locator('#delete-confirmation-btn').click();
     
-    });
+    // });
 
     
 });

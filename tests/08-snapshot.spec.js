@@ -12,13 +12,12 @@ test.describe.serial('Snapshot cases', () => {
     await page.getByRole('button', { name: 'Login' }).click();
     });
 
-    //Note: Attach and delete use cases are handled in same test
-
+   
     test('add and delete a snapshot', async ({ page }) => {
         await page.locator('div').filter({ hasText: 'Resources' }).nth(5).click();
         await page.locator('div').filter({ hasText: /^Infrastructure$/ }).nth(1).click();
         await page.getByRole('link', { name: 'Volumes' }).click();
-        await page.getByRole('row', { name: 'test server-storage — test' }).locator('label').click();
+        await page.getByRole('row', { name: 'test' }).locator('label').click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Create Snapshot').click();
         await page.getByRole('textbox', { name: 'Description *' }).click();

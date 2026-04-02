@@ -18,9 +18,9 @@ test.describe.serial('Security cases', () => {
         await page.getByRole('link', { name: 'Security Groups' }).click();
         await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
-        await page.getByText('testCloud25052IONOSConnected').click();
+        await page.getByText('test').click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.locator('div').filter({ hasText: /^testGB United Kingdom - Worcester$/ }).nth(1).click();
+        await page.locator('div').filter({ hasText: /^test/ }).nth(1).click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('textbox', { name: 'Enter security group name' }).click();
         await page.getByRole('textbox', { name: 'Enter security group name' }).fill('test security group');

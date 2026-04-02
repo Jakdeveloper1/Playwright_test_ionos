@@ -39,7 +39,7 @@ test.describe.serial('User cases', () => {
     });
 
     test('Edit a user', async ({ page }) => {
-        await page.getByRole('link', { name: ' Users' }).click();
+        await page.getByRole('link', { name: 'Users' }).click();
         //await page.locator('tr:nth-child(6) > .shadow > .easy-checkbox > label').click();
         const row = page.locator('tr', { hasText: randomEmail });
         await row.locator('.easy-checkbox label').click();

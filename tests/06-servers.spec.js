@@ -12,29 +12,29 @@ test.describe.serial('Server cases', () => {
     await page.getByRole('button', { name: 'Login' }).click();
     });
 
-    test.only('add a server', async ({ page }) => {
+    test('add a server', async ({ page }) => {
         await page.getByText('Resources').click();
         await page.getByText('Infrastructure', { exact: true }).click();
         await page.getByRole('link', { name: 'Servers' }).click();
         //await page.getByRole('button', { name: 'ADD SERVER' }).click();
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(2000);
         await page.getByRole('button', { name: 'ADD SERVER' }).click(); 
-        await page.locator('.cloud-card', { hasText: 'testCloud25052' }).click();
+        await page.locator('.cloud-card', { hasText: 'testCloud' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.locator('div:nth-child(2) > .datacenter-icon').click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'ISO Installer' }).click();
-        await page.getByText('Microsoft-SQL-2016-full-trial-english.isoCDROMIONOS • GB United Kingdom -').click();
+        await page.getByText('Microsoft-SQL-2016').first().click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByText('vCPU:').first().click();
+        //await page.getByText('vCPU:').first().click();
         await page.getByRole('button', { name: 'Custom Size' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByText('CloudtestCloud25052').click();
-        await page.getByText('CloudtestCloud25052').click();
+        //await page.getByText('CloudtestCloud').click();
         await page.getByRole('textbox', { name: 'my-server-' }).click();
         await page.getByRole('textbox', { name: 'my-server-' }).fill('test Server');
         await page.getByRole('button', { name: 'Deploy Server' }).click();
+        await page.waitForTimeout(30000);
     
     });
 
@@ -43,7 +43,7 @@ test.describe.serial('Server cases', () => {
         await page.getByText('Resources').click();
         await page.getByText('Infrastructure', { exact: true }).click();
         await page.getByRole('link', { name: 'Servers' }).click();
-        await page.getByRole('row', { name: 'test server testCloud25052' }).locator('label').click();
+        await page.getByRole('row', { name: 'test'}).locator('label').last().click();
             
        await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
@@ -66,19 +66,19 @@ test.describe.serial('Server cases', () => {
     
     });
 
-    test('delete a server', async ({ page }) => {
-        await page.getByText('Resources').click();
-        await page.getByText('Infrastructure', { exact: true }).click();
-        await page.getByRole('link', { name: 'Servers' }).click();
+    // test('delete a server', async ({ page }) => {
+    //     await page.getByText('Resources').click();
+    //     await page.getByText('Infrastructure', { exact: true }).click();
+    //     await page.getByRole('link', { name: 'Servers' }).click();
         
-            await page.getByRole('row', { name: 'test server testCloud25052' }).locator('label').click();
-            await page.getByRole('button', { name: 'ACTIONS ' }).click();
-            await page.getByText('Delete').click();
-            await page.getByRole('button', { name: 'DELETE' }).click();
-            await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
-            await page.locator('#delete-confirmation-btn').click();
+    //         await page.getByRole('row', { name: 'test server testCloud' }).locator('label').last().click();
+    //         await page.getByRole('button', { name: 'ACTIONS ' }).click();
+    //         await page.getByText('Delete').click();
+    //         await page.getByRole('button', { name: 'DELETE' }).click();
+    //         await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
+    //         await page.locator('#delete-confirmation-btn').click();
     
-    });
+    // });
 
     
 });

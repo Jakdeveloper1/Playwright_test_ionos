@@ -12,7 +12,7 @@ test.describe.serial('service plan cases', () => {
     await page.getByRole('button', { name: 'Login' }).click();
     });
 
-    test('add a service plan', async ({ page }) => {
+    test('add and share a service plan', async ({ page }) => {
         await page.locator('div').filter({ hasText: 'Settings' }).nth(5).click();
         await page.getByRole('link', { name: 'Service Plans' }).click();
         await page.getByRole('button', { name: ' ADD SERVICE PLAN' }).click();
@@ -21,6 +21,7 @@ test.describe.serial('service plan cases', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Save' }).click();
+        await page.locator('.switch-slider').first().click();
     
     });
 

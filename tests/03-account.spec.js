@@ -27,9 +27,10 @@ test.describe.serial('Account cases', () => {
   await page.getByRole('textbox', { name: 'Account Name *' }).fill('jak'+randomEmail);
   await page.getByRole('textbox', { name: 'Account Name *' }).press('Tab');
   await page.locator('#account-country-dropdown').click();
-  await page.getByRole('textbox', { name: 'Search' }).fill('pak');
-  //await page.getByRole('textbox', { name: 'Search' }).press('ArrowDown');
-  await page.getByText('Pakistan').click();
+//   //await page.getByRole('textbox', { name: 'Search' }).fill('pak');
+//     await page.locator('#search-container').getByRole('textbox', { name: 'Search' }).fill('pak');
+//   //await page.getByRole('textbox', { name: 'Search' }).press('ArrowDown');
+  await page.getByText('Afghanistan').click();
   await page.locator('.area-code-dropdown > .relative > .dropdown-toggle').click();
   await page.getByText('+1', { exact: true }).click();
   await page.getByRole('textbox', { name: 'Account Telephone *' }).fill('5555555');
@@ -67,7 +68,8 @@ test.describe.serial('Account cases', () => {
   await page.getByRole('textbox', { name: 'Search' }).fill('us');
   await page.getByText('USD').click();
   await page.locator('#timezones-dropdown').click();
-  await page.getByText('GMT+5').click();
+  await await page.waitForTimeout(2000);
+  await page.getByText('GMT+10').click();
   await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('.switch').first().click();
   await page.locator('div:nth-child(2) > .switch-container > .switch').click();
@@ -98,6 +100,8 @@ test.describe.serial('Account cases', () => {
         await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
         await page.getByRole('link', { name: 'Accounts' }).click();
         //await page.getByRole('row', { name: 'jaktest67754@gmail.com' }).locator('label').click();
+        const row = page.locator('tr', { hasText: randomEmail });
+        await row.locator('.easy-checkbox label').click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Delete').click();
         await page.getByRole('button', { name: 'DELETE' }).click();
