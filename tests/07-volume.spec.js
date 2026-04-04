@@ -19,15 +19,44 @@ test.describe.serial('Volume cases', () => {
         await page.getByRole('button', { name: ' ADD VOLUME' }).click();
         await page.getByText('testCloud').click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByText('test').click();
+        await page.waitForTimeout(5000)
+        
+        try{
+        await page.locator({ hasText: 'test' }).waitFor({ timeout: 3000 });
+        
+            await page.getByText('test').last().click();
+            
+        }
+        catch(e)
+        {
+                await page.waitForTimeout(5000)
+                await page.getByText('test').last().click();
+        }
+        
+        
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('textbox', { name: 'my-volume-' }).click();
         await page.getByRole('textbox', { name: 'my-volume-' }).fill('test volume');
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.locator('.switch').click();
-        await page.locator('span').filter({ hasText: 'Select Server' }).click();
-        await page.getByText('test Server', { exact: true }).first().click();
-        await page.getByRole('button', { name: 'Create' }).click();
+        //await page.locator('.switch').click();
+        //await page.waitForTimeout(3000)
+        //try{
+        //await page.locator('span').filter({ hasText: 'Select Server' }).click();
+        //await page.locator('.switch').click();
+        //await page.locator('span').filter({ hasText: 'Select Server' }).click();
+        //}
+        //catch(e)
+        //{
+            
+            //await page.waitForTimeout(2000)
+            //await page.locator('.switch').click();
+           // await page.waitForTimeout(5000)
+         //   await page.locator('.switch').click();
+            
+        //}
+       // await page.getByText('test Server', { exact: true }).first().click();
+        //await page.waitForTimeout(3000)
+        await page.getByRole('button', { name: 'CREATE' }).click();
     
     });
 

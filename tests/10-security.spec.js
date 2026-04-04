@@ -13,15 +13,38 @@ test.describe.serial('Security cases', () => {
     });
 
     test('add a Security group', async ({ page }) => {
+        await page.waitForTimeout(5000);
         await page.getByText('Resources').click();
         await page.getByText('Security').click();
         await page.getByRole('link', { name: 'Security Groups' }).click();
         await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
-        await page.getByText('test').click();
+        
+        
+        try {
+        await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 3000 });
+        //await page.getByText('test').last().click();
+        
+        } catch (e) {
+        //console.log("Retrying ADD SERVER...");
+        await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
+        await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
+        // await page.waitForTimeout(5000)
+        // await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
+        // await page.locator('.cloud-card', { hasText: 'test' }).click();
+        //await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
+        }
+
+
+
+        //await page.getByRole('button', { name: 'Next' }).click();
+        //await page.waitForTimeout(5000)
+        await page.getByText('test').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.locator('div').filter({ hasText: /^test/ }).nth(1).click();
+        await page.waitForTimeout(3000)
+        await page.getByText('test' ).last().click();
         await page.getByRole('button', { name: 'Next' }).click();
+        
         await page.getByRole('textbox', { name: 'Enter security group name' }).click();
         await page.getByRole('textbox', { name: 'Enter security group name' }).fill('test security group');
         await page.getByRole('textbox', { name: 'Enter description (optional)' }).click();
@@ -35,7 +58,7 @@ test.describe.serial('Security cases', () => {
         await page.getByText('Resources').click();
         await page.getByText('Security').click();
         await page.getByRole('link', { name: 'Security Groups' }).click();
-        await page.getByRole('row', { name: 'test ' }).locator('label').click();
+        await page.getByRole('row', { name: 'test ' }).locator('label').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.getByRole('textbox', { name: 'Description' }).click();
@@ -49,7 +72,7 @@ test.describe.serial('Security cases', () => {
         await page.getByText('Resources').click();
         await page.getByText('Security').click();
         await page.getByRole('link', { name: 'Security Groups' }).click();
-         await page.getByRole('row', { name: 'test ' }).locator('label').click();
+         await page.getByRole('row', { name: 'test ' }).locator('label').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Delete').click();
         await page.getByRole('button', { name: 'DELETE' }).click();

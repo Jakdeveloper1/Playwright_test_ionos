@@ -39,11 +39,17 @@ test.describe.serial('User cases', () => {
     });
 
     test('Edit a user', async ({ page }) => {
+        await page.waitForTimeout(3000)
         await page.getByRole('link', { name: 'Users' }).click();
         //await page.locator('tr:nth-child(6) > .shadow > .easy-checkbox > label').click();
         const row = page.locator('tr', { hasText: randomEmail });
-        await row.locator('.easy-checkbox label').click();
-
+        try{
+        await row.locator('.easy-checkbox label').last().click();
+        }
+        catch(e){
+            await page.waitForTimeout(3000)
+            await row.locator('.easy-checkbox label').last().click();
+        }
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.locator('.dropdown-toggle').click();

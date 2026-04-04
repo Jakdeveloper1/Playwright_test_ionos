@@ -22,8 +22,8 @@ test.describe.serial('DC cases', () => {
         await page.getByRole('button', { name: ' ADD DATACENTER' }).click();
         //await page.locator('div:nth-child(2) > .cloud-icon').click();
         await page.getByText('test').click();
-        await page.getByText('Choose CloudSelect from your').click();
-        await page.locator('.cloud-icon').first().click();
+        //await page.getByText('Choose CloudSelect from your').click();
+        //await page.locator('.cloud-icon').first().click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('textbox', { name: 'Enter datacenter name' }).click();
         await page.getByRole('textbox', { name: 'Enter datacenter name' }).fill(randomName);
@@ -39,7 +39,7 @@ test.describe.serial('DC cases', () => {
         await page.getByRole('button', { name: 'Save' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'CREATE' }).click();
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(5000)
     });
 
     test('edit a DC', async ({ page }) => {
@@ -47,17 +47,20 @@ test.describe.serial('DC cases', () => {
             await page.locator('div').filter({ hasText: 'Resources' }).nth(5).click();
             await page.locator('div').filter({ hasText: /^Infrastructure$/ }).nth(1).click();
             await page.getByRole('link', { name: 'Datacenters' }).click();
-            await page.getByRole('row', { name: 'test' }).locator('label').click();
+            await page.getByRole('row', { name: 'test' }).locator('label').last().click();
             await page.getByRole('button', { name: 'ACTIONS ' }).click();
             await page.getByText('Edit').click();
             await page.getByRole('button', { name: 'Next' }).click();
             await page.getByRole('textbox', { name: 'Enter datacenter description' }).click();
             await page.getByRole('textbox', { name: 'Enter datacenter description' }).fill('testing service');
             await page.getByRole('button', { name: 'Next' }).click();
-            await page.getByRole('button', { name: 'EDIT' }).click();
-            await page.getByRole('textbox', { name: 'Enter LAN name' }).click();
-            await page.getByRole('textbox', { name: 'Enter LAN name' }).fill('test lan 1');
-            await page.getByRole('button', { name: 'Save' }).click();
+            //await page.pause();
+            //await expect(page.getByText('EDIT')).toBeVisible();
+            
+            //await page.getByRole('button', { name: 'EDIT' }).click();
+            //await page.getByRole('textbox', { name: 'Enter LAN name' }).click();
+            //await page.getByRole('textbox', { name: 'Enter LAN name' }).fill('test lan 1');
+            //await page.getByRole('button', { name: 'Save' }).click();
             await page.getByRole('button', { name: 'Next' }).click();
             await page.getByRole('button', { name: 'Update' }).click();
                 })

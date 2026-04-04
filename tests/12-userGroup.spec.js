@@ -21,11 +21,13 @@ test.describe.serial('User group cases', () => {
         await page.getByRole('button', { name: 'Select All' }).click();
         await page.getByRole('button', { name: 'Save' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
+        await page.waitForTimeout(3000)
     
     });
 
     test('Edit a User group', async ({ page }) => {
-        await page.locator('div').filter({ hasText: 'Settings' }).nth(5).click();
+        await page.locator('.nav-link', {hasText:"Settings"}).click();
+        //await page.locator('div').filter({ hasText: 'Settings' }).nth(5).click();
         await page.getByRole('link', { name: 'User Groups' }).click();
         
         await page.getByRole('textbox', { name: 'Search' }).click();
@@ -33,7 +35,9 @@ test.describe.serial('User group cases', () => {
         await page.locator('tr:nth-child(9) > .shadow > .easy-checkbox > label').click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
-        await page.locator('label').filter({ hasText: 'Manage' }).nth(4).click();
+        //await page.waitForTimeout(5000)
+        //await page.locator('label').filter({ hasText: 'Users' }).click();
+        await page.locator('.slider').first().click();
         await page.getByRole('button', { name: 'Save' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();    
     

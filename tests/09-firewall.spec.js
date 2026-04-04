@@ -19,22 +19,52 @@ test.describe.serial('Firewall cases', () => {
         await page.locator('div').filter({ hasText: /^Security$/ }).nth(1).click();
         await page.getByRole('link', { name: 'Firewall Rules' }).click();
         await page.getByRole('button', { name: ' ADD FIREWALL RULE' }).click();
-        await page.getByText('testCloud').click();
+        await page.getByText('testCloud').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByText('test').click();
+        //await page.getByText('test').click();
+
+        //  try{
+        // //await page.locator({ hasText: 'test' }).waitFor({ timeout: 3000 });
+        // await page.locator('.datacenter-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
+        
+            
+            
+        // }
+        // catch(e)
+        // {
+        //       //  await page.waitForTimeout(3000)
+        //         //await page.locator({ hasText: 'test' }).waitFor({ timeout: 3000 });
+        //         await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
+        // }
+        await page.locator('.datacenter-icon').last().click();
+        await page.getByText('test').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByText('test ServerVCPURUNNING').first().click();
+        await page.locator('.server-card').last().click();
+        //await page.getByText('test').last().click();
+        await page.getByText('test').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
+        
+        await page.locator('.nic-card').last().click();
         await page.getByText('eth').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
+        
+        //await page.locator('#type-dropdown').click();
+        //await page.locator('.ml-auto > .icon > .bi').first().click();
+        //await page.waitForTimeout(3000)
+        await page.locator('#type-dropdown').click();
+        
+        //await page.locator('#type-dropdown').click();
+        //await page.waitForTimeout(3000)
+        //await page.getByText('INGRESS').first().click();
+        await page.locator('.dropdown-item').first().click();
+        await page.locator('#protocol-dropdown').click();
+        await page.locator('.dropdown-item').first().click();
+        //await page.waitForTimeout(3000)
+        //await page.getByText('TCP').click();
         await page.getByRole('textbox', { name: 'my-firewall-rule' }).click();
         await page.getByRole('textbox', { name: 'my-firewall-rule' }).fill('test rules');
-        await page.locator('#type-dropdown').click();
-        await page.locator('.ml-auto > .icon > .bi').first().click();
-        await page.locator('#type-dropdown').click();
-        await page.getByText('INGRESS').click();
-        await page.locator('#protocol-dropdown').click();
-        await page.getByText('TCP').click();
+        
+        //await page.waitForTimeout(3000)
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Create' }).click();
     
