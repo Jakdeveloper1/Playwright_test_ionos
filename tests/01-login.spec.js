@@ -3,7 +3,6 @@ import { email, password } from './data';
 
 test('login', async ({ page }) => {
   await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
-  //await page.waitForTimeout(50000);
   await page.getByRole('textbox', { name: 'Username *' }).click();
   await page.getByRole('textbox', { name: 'Username *' }).fill(email);
   await page.getByRole('textbox', { name: 'Password *' }).click();

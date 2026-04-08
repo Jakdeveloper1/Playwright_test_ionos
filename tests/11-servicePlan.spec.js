@@ -22,6 +22,7 @@ test.describe.serial('service plan cases', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Save' }).click();
         await page.locator('.switch-slider').first().click();
+        await page.waitForTimeout(3000)
     
     });
 
@@ -29,7 +30,6 @@ test.describe.serial('service plan cases', () => {
         await page.locator('div').filter({ hasText: 'Settings' }).nth(5).click();
         await page.getByRole('link', { name: 'Service Plans' }).click();
         await page.getByRole('row', { name: 'test plan' }).locator('label').first().click();
-        //await page.locator('label').nth(1).click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.getByRole('button', { name: 'ENTERPRISE' }).click();
@@ -41,6 +41,7 @@ test.describe.serial('service plan cases', () => {
 
         await expect(btn).toBeEnabled();  
         await btn.click();
+        await page.waitForTimeout(3000)
     
     });
 
@@ -50,8 +51,8 @@ test.describe.serial('service plan cases', () => {
         await page.getByRole('row', { name: 'test plan' }).locator('label').first().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Delete').click();
-        //await page.locator('div').filter({ hasText: /^test plan2 cores, 6GB RAM, 80GB storage N\/A$/ }).nth(1).click();
         await page.getByRole('button', { name: 'Delete Plan' }).click();
+        await page.waitForTimeout(3000)
     
     });
 

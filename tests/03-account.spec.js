@@ -20,22 +20,13 @@ test.describe.serial('Account cases', () => {
   await page.locator('#quick-add-btn').click();
   await page.getByText('Client', { exact: true }).click();
   await page.locator('#distributor-user-role-dropdown').click();
-  // await page.locator('#distributor-user-role-dropdown').click();
-  // await page.locator('#distributor-user-role-dropdown').click();
   await page.getByText('ionos@gmail.com').click();
   await page.locator('#account-name-input').fill('jak'+randomEmail);
-  // await page.getByRole('textbox', { name: 'Account Name *' }).click();
-  // await page.getByRole('textbox', { name: 'Account Name *' }).fill('jak'+randomEmail);
-  // await page.getByRole('textbox', { name: 'Account Name *' }).press('Tab');
   await page.locator('#account-country-dropdown').click();
-//   //await page.getByRole('textbox', { name: 'Search' }).fill('pak');
-//     await page.locator('#search-container').getByRole('textbox', { name: 'Search' }).fill('pak');
-//   //await page.getByRole('textbox', { name: 'Search' }).press('ArrowDown');
   await page.getByText('Afghanistan').click();
   await page.locator('.area-code-dropdown > .relative > .dropdown-toggle').click();
   await page.getByText('+1', { exact: true }).click();
   await page.locator('#account-telephone-input').fill('6666666');
-  //await page.getByRole('textbox', { name: 'Account Telephone *' }).fill('5555555');
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('textbox', { name: 'First Name *' }).click();
   await page.getByRole('textbox', { name: 'First Name *' }).fill('kaj'+randomEmail);
@@ -79,6 +70,7 @@ test.describe.serial('Account cases', () => {
   
   await page.getByRole('button', { name: 'SAVE' }).click();
   await page.getByRole('button', { name: 'Yes' }).click();
+  await page.waitForTimeout(3000)
 
 
     });
@@ -101,12 +93,12 @@ test.describe.serial('Account cases', () => {
         await page.getByRole('textbox', { name: 'Address Line 2' }).fill('5000');
         await page.getByRole('button', { name: 'SAVE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
+        await page.waitForTimeout(3000)
      });
 
       test('delete an account', async ({ page }) => {
         await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
         await page.getByRole('link', { name: 'Clients' }).click();
-        //await page.getByRole('row', { name: 'jaktest67754@gmail.com' }).locator('label').click();
         const row = page.locator('tr', { hasText: randomEmail });
         await row.locator('.easy-checkbox label').click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
@@ -114,6 +106,7 @@ test.describe.serial('Account cases', () => {
         await page.getByRole('button', { name: 'DELETE' }).click();
         await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
         await page.locator('#delete-confirmation-btn').click();
+        await page.waitForTimeout(3000)
     });
 });
 

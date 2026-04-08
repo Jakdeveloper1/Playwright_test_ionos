@@ -20,25 +20,13 @@ test.describe.serial('Security cases', () => {
         await page.waitForTimeout(3000);
         await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
         
-        
         try {
         await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 3000 });
-        //await page.getByText('test').last().click();
         
         } catch (e) {
-        //console.log("Retrying ADD SERVER...");
         await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
         await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
-        // await page.waitForTimeout(5000)
-        // await page.getByRole('button', { name: 'ADD SECURITY GROUP' }).click();
-        // await page.locator('.cloud-card', { hasText: 'test' }).click();
-        //await page.locator('.cloud-card', { hasText: 'test' }).waitFor({ timeout: 5000 });
         }
-
-
-
-        //await page.getByRole('button', { name: 'Next' }).click();
-        //await page.waitForTimeout(5000)
         await page.getByText('test').last().click();
         await page.getByRole('button', { name: 'Next' }).click();
         await page.waitForTimeout(3000)
@@ -51,7 +39,7 @@ test.describe.serial('Security cases', () => {
         await page.getByRole('textbox', { name: 'Enter description (optional)' }).fill('test group');
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Create' }).click();
-    
+        await page.waitForTimeout(3000)
     });
 
     test('Edit a Security group', async ({ page }) => {
@@ -65,6 +53,7 @@ test.describe.serial('Security cases', () => {
         await page.getByRole('textbox', { name: 'Description' }).fill('test group description update');
         await page.getByRole('button', { name: 'SAVE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
+        await page.waitForTimeout(3000)
     
     });
 
@@ -78,7 +67,7 @@ test.describe.serial('Security cases', () => {
         await page.getByRole('button', { name: 'DELETE' }).click();
         await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
         await page.locator('#delete-confirmation-btn').click();
-    
+        await page.waitForTimeout(3000)
     });
 
     

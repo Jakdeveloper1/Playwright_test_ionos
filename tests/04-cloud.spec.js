@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { email, password } from './data';
 
 
-let randomID;
+//let randomID;
 test.describe.serial('Cloud cases', () => {
     test.beforeEach(async ({ page }) => {
     await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
@@ -15,14 +15,14 @@ test.describe.serial('Cloud cases', () => {
 
     test('add a cloud', async ({ page }) => {
 
-        randomID = Math.floor(Math.random() * 100000).toString();
+       // randomID = Math.floor(Math.random() * 100000).toString();
             await page.waitForTimeout(2000)
             await page.getByText('Manage').click();
             await page.getByRole('link', { name: 'Clouds' }).click();
             await page.getByRole('button', { name: ' ADD CLOUD' }).click();
             await page.locator('.cloud-type-wrapper').click();
             await page.getByRole('textbox', { name: 'Cloud Name *' }).click();
-            await page.getByRole('textbox', { name: 'Cloud Name *' }).fill('testCloud'+randomID);
+            await page.getByRole('textbox', { name: 'Cloud Name *' }).fill('testCloud1000');
             await page.getByRole('textbox', { name: 'Contract ID *' }).click();
             await page.getByRole('textbox', { name: 'Contract ID *' }).fill('37847698');
             await page.locator('#currency-dropdown').click();
@@ -32,20 +32,16 @@ test.describe.serial('Cloud cases', () => {
             await page.locator('#dropdown-items').getByText('DD/MM/YYYY').click();
             await page.getByRole('button', { name: 'SAVE' }).click();
             await page.getByRole('button', { name: 'Yes' }).click();
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(3000);
     
     });
 
     test('verify a cloud', async ({ page }) => {
-        //await page.getByText('Manage').click();
         await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
         await page.getByRole('link', { name: 'Clouds' }).click();
-        const row = page.locator('tr', { hasText: randomID });
-        //await row.locator('.easy-checkbox label').click();
-        
+        //const row = page.locator('tr', { hasText: randomID });
         await page.getByRole('row', { name: 'test' }).locator('label').last().click();
          await page.getByRole('button', { name: 'ACTIONS ' }).click();
-         //await page.waitForTimeout(3000);
          await page.getByText('Validate').first().click();
         
 
@@ -55,24 +51,16 @@ test.describe.serial('Cloud cases', () => {
         await page.getByRole('textbox', { name: 'Password *' }).fill('Junaid!');
         await page.getByRole('button', { name: 'VALIDATE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(5000);
     
     });
 
     test('edit a cloud', async ({ page }) => {
         await page.waitForTimeout(3000)
-        //await page.getByText('Manage').click();
         await page.locator('.nav-link', {hasText:"Manage"}).click();
         await page.getByRole('link', { name: 'Clouds' }).click();
-        const row = page.locator('tr', { hasText: randomID });
-        //try{
+        const row = page.locator('tr', { hasText: '1000' });
         await row.locator('.easy-checkbox').click();
-       // }
-        //catch(e){
-           // await page.waitForTimeout(3000)
-          //  await row.locator('.easy-checkbox').click();
-        //}
-        //await page.getByRole('row', { name: 'testCloud IONOS 1234 Not' }).locator('label').click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         
@@ -84,26 +72,9 @@ test.describe.serial('Cloud cases', () => {
 
         await page.getByRole('button', { name: 'SAVE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
-    
+        await page.waitForTimeout(3000)
     });
 
-    //Note: Do not run the delete cloud as server.spec.js will require test cloud from it
-
-
-// test('delete a cloud', async ({ page }) => {
-    //         await page.getByText('Manage').click();
-    //         await page.getByRole('link', { name: 'Clouds' }).click();
-    //         const row = page.locator('tr', { hasText: randomID });
-    //         await row.locator('.easy-checkbox label').click();
-    //         await page.getByRole('button', { name: 'ACTIONS ' }).click();
-
-
-    //         await page.getByText('Delete').click();
-    //         await page.getByRole('button', { name: 'DELETE' }).click();
-    //         await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
-    //         await page.locator('#delete-confirmation-btn').click();
-    
-    // });
 
     
 });

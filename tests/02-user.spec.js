@@ -24,7 +24,6 @@ test.describe.serial('User cases', () => {
     await page.getByRole('textbox', { name: 'First Name *' }).press('Tab');
     await page.getByRole('textbox', { name: 'Last Name *' }).fill('testing');
     await page.getByRole('textbox', { name: 'Last Name *' }).press('Tab');
-    //await page.getByRole('textbox', { name: 'Email *' }).fill('test11@gmail.com');
     await page.getByRole('textbox', { name: 'Email *' }).fill(randomEmail);
     await page.getByRole('textbox', { name: 'Email *' }).press('Tab');
     await page.locator('.dropdown-toggle').first().click();
@@ -35,13 +34,13 @@ test.describe.serial('User cases', () => {
     await page.locator('#dropdown-items').getByText('User', { exact: true }).click();
     await page.getByRole('button', { name: 'SAVE' }).click(); 
     await page.getByRole('button', { name: 'Yes' }).click();
+    await page.waitForTimeout(3000)
 
     });
 
     test('Edit a user', async ({ page }) => {
         await page.waitForTimeout(3000)
         await page.getByRole('link', { name: 'Users' }).click();
-        //await page.locator('tr:nth-child(6) > .shadow > .easy-checkbox > label').click();
         const row = page.locator('tr', { hasText: randomEmail });
         try{
         await row.locator('.easy-checkbox label').last().click();
@@ -57,11 +56,11 @@ test.describe.serial('User cases', () => {
         await page.getByRole('button', { name: 'APPLY' }).click();
         await page.getByRole('button', { name: 'SAVE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
+        await page.waitForTimeout(3000)
      });
 
       test('delete a user', async ({ page }) => {
     await page.getByRole('link', { name: ' Users' }).click();
-    //await page.locator('tr:nth-child(7) > .shadow > .easy-checkbox > label').click();
     const row = page.locator('tr', { hasText: randomEmail });
     await row.locator('.easy-checkbox label').click();
     
@@ -70,6 +69,7 @@ test.describe.serial('User cases', () => {
     await page.getByRole('button', { name: 'DELETE' }).click();
     await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
     await page.locator('#delete-confirmation-btn').click();
+    await page.waitForTimeout(3000)
     });
 });
 
