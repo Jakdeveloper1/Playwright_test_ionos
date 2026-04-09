@@ -31,7 +31,8 @@ test.describe.serial('User group cases', () => {
         
         await page.getByRole('textbox', { name: 'Search' }).click();
         await page.getByRole('textbox', { name: 'Search' }).fill('test');
-        await page.locator('tr:nth-child(9) > .shadow > .easy-checkbox > label').click();
+        await page.waitForTimeout(2000)
+        await page.locator('.easy-checkbox').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.locator('.slider').first().click();
@@ -46,7 +47,8 @@ test.describe.serial('User group cases', () => {
         await page.getByRole('link', { name: 'User Groups' }).click();
         await page.getByRole('textbox', { name: 'Search' }).click();
         await page.getByRole('textbox', { name: 'Search' }).fill('test');
-        await page.locator('tr:nth-child(9) > .shadow > .easy-checkbox > label').click();
+        await page.waitForTimeout(2000)
+        await page.locator('.easy-checkbox').last().click();
         
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Delete').click();

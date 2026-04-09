@@ -63,7 +63,7 @@ test.describe.serial('Server cases', () => {
         await page.locator('.slider').last().click();
         await page.getByRole('button', { name: 'Save' }).click();
         await page.getByRole('button', { name: 'Update' }).click(); 
-         await page.waitForTimeout(3000)
+         await page.waitForTimeout(5000)
     });
 
     

@@ -1,2 +1,3 @@
-export const email = 'test@user.co.uk';
-export const password = 'Junaid!';
+export const email = '';
+export const password = '';
+export const cloud_email = ''

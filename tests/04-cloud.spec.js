@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { email, password } from './data';
+import { email, password, cloud_email } from './data';
 
 
 //let randomID;
@@ -37,6 +37,7 @@ test.describe.serial('Cloud cases', () => {
     });
 
     test('verify a cloud', async ({ page }) => {
+        await page.waitForTimeout(3000)
         await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
         await page.getByRole('link', { name: 'Clouds' }).click();
         //const row = page.locator('tr', { hasText: randomID });
@@ -46,9 +47,9 @@ test.describe.serial('Cloud cases', () => {
         
 
         await page.getByRole('textbox', { name: 'Email *' }).click();
-        await page.getByRole('textbox', { name: 'Email *' }).fill('testscript@illapa.cloud');
+        await page.getByRole('textbox', { name: 'Email *' }).fill(cloud_email);
         await page.getByRole('textbox', { name: 'Password *' }).click();
-        await page.getByRole('textbox', { name: 'Password *' }).fill('Junaid!');
+        await page.getByRole('textbox', { name: 'Password *' }).fill(password);
         await page.getByRole('button', { name: 'VALIDATE' }).click();
         await page.getByRole('button', { name: 'Yes' }).click();
         await page.waitForTimeout(5000);
