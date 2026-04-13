@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { email, password } from './data';
+import { email, password, link } from './data';
 
 
 test.describe.serial('Price Book cases', () => {
     test.beforeEach(async ({ page }) => {
-    await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
+    await page.goto(link);
     await page.getByRole('textbox', { name: 'Username *' }).click();
     await page.getByRole('textbox', { name: 'Username *' }).fill(email);
     await page.getByRole('textbox', { name: 'Password *' }).click();
@@ -20,7 +20,7 @@ test.describe.serial('Price Book cases', () => {
         await page.getByText('Duplicate').click();
         
         //edit
-        await page.waitForTimeout(5000)
+        await page.waitForTimeout(3000)
         await page.getByRole('row', { name: 'Jason Pricebook Copy' }).locator('label').first().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
@@ -34,7 +34,7 @@ test.describe.serial('Price Book cases', () => {
         await page.getByText('Assign To').click();
         await page.waitForTimeout(3000)
         await page.locator('div').filter({ hasText: 'demo' }).first().click();
-        await page.waitForTimeout(5000)
+        await page.waitForTimeout(3000)
         await page.getByRole('button', { name: 'Assign' }).click();
         await page.waitForTimeout(3000)
         //delete

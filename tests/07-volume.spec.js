@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { email, password } from './data';
+import { email, password, link } from './data';
 
 
 test.describe.serial('Volume cases', () => {
     test.beforeEach(async ({ page }) => {
-    await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
+    await page.goto(link);
     await page.getByRole('textbox', { name: 'Username *' }).click();
     await page.getByRole('textbox', { name: 'Username *' }).fill(email);
     await page.getByRole('textbox', { name: 'Password *' }).click();

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { email, password } from './data';
+import { email, password,link } from './data';
 
 
 test.describe.serial('Server cases', () => {
     test.beforeEach(async ({ page }) => {
-    await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
+    await page.goto(link);
     await page.getByRole('textbox', { name: 'Username *' }).click();
     await page.getByRole('textbox', { name: 'Username *' }).fill(email);
     await page.getByRole('textbox', { name: 'Password *' }).click();
@@ -37,7 +37,13 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Custom Size' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: ' Add Network Interface ' }).click();
+        
+        await page.locator('.dropdown-toggle').first().click();
+        await page.locator('.dropdown-item').last().click();
+        await page.getByRole('button', { name: 'Save' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
+        
         await page.getByRole('textbox', { name: 'my-server-' }).click();
         await page.getByRole('textbox', { name: 'my-server-' }).fill('test Server');
         await page.getByRole('button', { name: 'Deploy Server' }).click();

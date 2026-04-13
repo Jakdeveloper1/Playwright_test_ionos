@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { email, password } from './data';
+import { email, password,link } from './data';
 
 let randomEmail;
 test.describe.serial('User cases', () => {
     test.beforeEach(async ({ page }) => {
-    await page.goto('https://opsmgr.illapa.cloud/4/organisation/login');
+    await page.goto(link);
     await page.getByRole('textbox', { name: 'Username *' }).click();
     await page.getByRole('textbox', { name: 'Username *' }).fill(email);
     await page.getByRole('textbox', { name: 'Password *' }).click();
@@ -41,6 +41,8 @@ test.describe.serial('User cases', () => {
     test('Edit a user', async ({ page }) => {
         await page.waitForTimeout(3000)
         await page.getByRole('link', { name: 'Users' }).click();
+        await page.getByRole('textbox', { name: 'Search' }).click();
+        await page.getByRole('textbox', { name: 'Search' }).fill('test');
         const row = page.locator('tr', { hasText: randomEmail });
         try{
         await row.locator('.easy-checkbox label').last().click();
@@ -61,6 +63,8 @@ test.describe.serial('User cases', () => {
 
       test('delete a user', async ({ page }) => {
     await page.getByRole('link', { name: ' Users' }).click();
+    await page.getByRole('textbox', { name: 'Search' }).click();
+        await page.getByRole('textbox', { name: 'Search' }).fill('test');
     const row = page.locator('tr', { hasText: randomEmail });
     await row.locator('.easy-checkbox label').click();
     
