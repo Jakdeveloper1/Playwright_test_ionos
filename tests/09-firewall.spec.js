@@ -12,6 +12,8 @@ test.describe.serial('Firewall cases', () => {
     await page.getByRole('button', { name: 'Login' }).click();
     });
 
+    
+
     test('add a Firewall', async ({ page }) => {
 
         
@@ -49,7 +51,7 @@ test.describe.serial('Firewall cases', () => {
         await page.locator('div').filter({ hasText: 'Resources' }).nth(5).click();
         await page.locator('div').filter({ hasText: /^Security$/ }).nth(1).click();
         await page.getByRole('link', { name: 'Firewall Rules' }).click();
-        await page.getByRole('row', { name: 'test ' }).locator('label').click();
+        await page.getByRole('row', { name: 'test ' }).locator('label').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.locator('#protocol-dropdown').click();
@@ -62,7 +64,7 @@ test.describe.serial('Firewall cases', () => {
         await page.locator('div').filter({ hasText: 'Resources' }).nth(5).click();
         await page.locator('div').filter({ hasText: /^Security$/ }).nth(1).click();
         await page.getByRole('link', { name: 'Firewall Rules' }).click();
-        await page.getByRole('row', { name: 'test ' }).locator('label').click();
+        await page.getByRole('row', { name: 'test ' }).locator('label').last().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Delete').click();
         await page.getByRole('button', { name: 'DELETE FIREWALL RULE' }).click();

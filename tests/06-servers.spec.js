@@ -37,18 +37,21 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Custom Size' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByRole('button', { name: ' Add Network Interface ' }).click();
+        //await page.getByRole('button', { name: ' Add Network Interface ' }).click();
         
-        await page.locator('.dropdown-toggle').first().click();
-        await page.locator('.dropdown-item').last().click();
-        await page.getByRole('button', { name: 'Save' }).click();
+        //await page.locator('.dropdown-toggle').first().click();
+        //await page.locator('.dropdown-item').last().click();
+       // await page.getByRole('button', { name: 'Save' }).click();
+        
         await page.getByRole('button', { name: 'Next' }).click();
         
         await page.getByRole('textbox', { name: 'my-server-' }).click();
         await page.getByRole('textbox', { name: 'my-server-' }).fill('test Server');
         await page.getByRole('button', { name: 'Deploy Server' }).click();
+        
         //await page.locator('.status-badge__text', { hasText: 'RUNNING' }).waitFor({ timeout: 30000 });
        await page.waitForTimeout(5000)
+       //await expect(page.locator('.status-badge__text')).toHaveText('RUNNING', {timeout:15000})
     });
 
     test('edit a server', async ({ page }) => {
