@@ -59,8 +59,8 @@ test.describe.serial('Volume cases', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByRole('button', { name: 'Add NIC' }).click();
         await page.locator('.slider').last().click();
-        await page.getByRole('button', { name: 'Save' }).click();
-        await page.getByRole('button', { name: 'Update' }).click(); 
+        await page.getByRole('button', { name: 'Save' }).first().click();
+        await page.getByRole('button', { name: 'Save' }).click(); 
          await page.waitForTimeout(5000)
     });
 

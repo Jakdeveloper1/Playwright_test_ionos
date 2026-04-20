@@ -13,6 +13,7 @@ test.describe.serial('Server cases', () => {
     });
 
     test('add a server', async ({ page }) => {
+        test.setTimeout(60000)
         await page.waitForTimeout(5000);
         await page.getByText('Resources').click();
         await page.getByText('Infrastructure', { exact: true }).click();
@@ -35,7 +36,8 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'ISO Installer' }).click();
         await page.locator('.image-card').first().click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByRole('button', { name: 'Custom Size' }).click();
+        await page.locator('.plan-card').last().click();
+        //await page.getByRole('button', { name: 'Custom Size' }).click();
         await page.getByRole('button', { name: 'Next' }).click();
         //await page.getByRole('button', { name: ' Add Network Interface ' }).click();
         
@@ -50,9 +52,11 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'Deploy Server' }).click();
         
         //await page.locator('.status-badge__text', { hasText: 'RUNNING' }).waitFor({ timeout: 30000 });
-       await page.waitForTimeout(5000)
+       await page.waitForTimeout(30000)
        //await expect(page.locator('.status-badge__text')).toHaveText('RUNNING', {timeout:15000})
     });
+
+    
 
     test('edit a server', async ({ page }) => {
         await page.getByText('Resources').click();
@@ -63,15 +67,24 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Edit').click();
         await page.getByRole('button', { name: 'Next' }).click();
+        //await page.locator('.size-tab').click();
+        //await page.locator('.plan-card').first().click();
+
         await page.getByRole('slider').fill('15');
         await page.getByRole('button', { name: 'Service Plans' }).click();
         await page.getByText('SmallvCPU: 1RAM: 2 GBStorage').click();
         await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'ADD STORAGE/CD-ROM' }).click();
+        await page.locator('.image-tab').last().click();
+        await page.locator('.image-card').click();
+        await page.getByRole('button', { name: 'ADD' }).last().click();
+
         await page.getByRole('button', { name: 'Next' }).click();
+        
         await page.getByRole('button', { name: 'Add NIC' }).click();
         await page.locator('.slider').last().click();
-        await page.getByRole('button', { name: 'Save' }).click();
-        await page.getByRole('button', { name: 'Update' }).click(); 
+        await page.getByRole('button', { name: 'Save' }).first().click();
+        await page.getByRole('button', { name: 'Save' }).click(); 
          await page.waitForTimeout(5000)
     });
 

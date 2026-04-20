@@ -26,6 +26,8 @@ test.describe.serial('Price Book cases', () => {
         await page.getByText('Edit').click();
         await page.getByRole('textbox', { name: 'Name' }).click();
         await page.getByRole('textbox', { name: 'Name' }).fill('Jason Pricebook original');
+        await page.getByRole('textbox', { name: 'Description' }).click();
+        await page.getByRole('textbox', { name: 'Description' }).fill('This is a test description');
         await page.getByRole('button', { name: 'Save' }).click();
         await page.waitForTimeout(3000)
         //assign

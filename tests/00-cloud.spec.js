@@ -3,6 +3,7 @@ import { email, password, cloud_email,link } from './data';
 
 
 //let randomID;
+let randomName;
 test.describe.serial('Cloud cases', () => {
     test.beforeEach(async ({ page }) => {
     await page.goto(link);
@@ -76,6 +77,35 @@ test.describe.serial('Cloud cases', () => {
         await page.waitForTimeout(3000)
     });
 
+     test('add a Data Center', async ({ page }) => {
+        //test.setTimeout(60000);
+        const randomNumber = Math.floor(Math.random() * 100000);
+        randomName = `test${randomNumber}`;
+
+        await page.getByText('Resources').click();
+        await page.getByText('Infrastructure', { exact: true }).click();
+        await page.getByRole('link', { name: 'Datacenters' }).click();
+        await page.getByRole('button', { name: ' ADD DATACENTER' }).click();
+        await page.getByText('testC').click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('textbox', { name: 'Enter datacenter name' }).click();
+        await page.getByRole('textbox', { name: 'Enter datacenter name' }).fill(randomName);
+        await page.locator('div').filter({ hasText: /^Select location$/ }).nth(2).click();
+        await page.getByText('berlin').click();
+        await page.getByRole('textbox', { name: 'Enter datacenter description' }).click();
+        await page.getByRole('textbox', { name: 'Enter datacenter description' }).fill('this is a test datacenter');
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: ' Add LAN' }).click();
+        await page.getByRole('textbox', { name: 'Enter LAN name' }).click();
+        await page.getByRole('textbox', { name: 'Enter LAN name' }).fill('test LAN');
+        await page.locator('.slider').click();
+        await page.getByRole('button', { name: 'Save' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'CREATE' }).click();
+        await page.waitForTimeout(5000)
+    });
+
+    
 
     
 });
