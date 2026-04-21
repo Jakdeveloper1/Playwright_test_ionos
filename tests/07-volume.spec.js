@@ -19,7 +19,7 @@ test.describe.serial('Volume cases', () => {
         await page.getByRole('button', { name: ' ADD VOLUME' }).click();
         await page.getByText('testCloud').click();
         await page.getByRole('button', { name: 'Next' }).click();
-        await page.waitForTimeout(5000)
+        await page.waitForTimeout(3000)
         
         try{
         await page.locator({ hasText: 'test' }).waitFor({ timeout: 3000 });

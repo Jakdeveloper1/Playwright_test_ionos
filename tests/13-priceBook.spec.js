@@ -13,6 +13,7 @@ test.describe.serial('Price Book cases', () => {
     });
 
     test('Duplicate, Edit, Assign and Delete a price book', async ({ page }) => {
+        test.setTimeout(60000)
        await page.locator('div').filter({ hasText: 'Billing' }).nth(5).click();
         await page.getByRole('link', { name: 'Pricebooks' }).click();
         await page.getByRole('row', { name: 'Jason Pricebook' }).locator('label').last().click();
@@ -30,12 +31,19 @@ test.describe.serial('Price Book cases', () => {
         await page.getByRole('textbox', { name: 'Description' }).fill('This is a test description');
         await page.getByRole('button', { name: 'Save' }).click();
         await page.waitForTimeout(3000)
+        //unassign
+        await page.getByRole('row', { name: 'Default Client Pricebook' }).locator('label').first().click();
+        await page.getByRole('button', { name: 'ACTIONS ' }).click();
+        await page.getByText('Unassign From').click();
+        await page.waitForTimeout(3000)
+        await page.locator('.select-card').filter({ hasText: 'jaktest' }).first().click();
+        await page.getByRole('button', { name: 'UNASSIGN' }).click();
         //assign
         await page.getByRole('row', { name: 'Jason Pricebook original' }).locator('label').first().click();
         await page.getByRole('button', { name: 'ACTIONS ' }).click();
         await page.getByText('Assign To').click();
         await page.waitForTimeout(3000)
-        await page.locator('div').filter({ hasText: 'demo' }).first().click();
+        await page.locator('.select-card').filter({ hasText: 'jaktest' }).first().click();
         await page.waitForTimeout(3000)
         await page.getByRole('button', { name: 'Assign' }).click();
         await page.waitForTimeout(3000)

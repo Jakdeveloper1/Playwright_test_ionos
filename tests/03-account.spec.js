@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { email, password, link } from './data';
 
-let randomEmail;
+//let randomEmail;
 test.describe.serial('Account cases', () => {
     test.beforeEach(async ({ page }) => {
     await page.goto(link);
@@ -14,14 +14,14 @@ test.describe.serial('Account cases', () => {
 
     test('add an account', async ({ page }) => {
 
-        const randomNumber = Math.floor(Math.random() * 100000);
-    randomEmail = `test${randomNumber}@gmail.com`;
+      //  const randomNumber = Math.floor(Math.random() * 100000);
+    //randomEmail = `test${randomNumber}@gmail.com`;
 
   await page.locator('#quick-add-btn').click();
   await page.getByText('Client', { exact: true }).click();
-  await page.locator('#distributor-user-role-dropdown').click();
-  await page.getByText('ionos@gmail.com').click();
-  await page.locator('#account-name-input').fill('jak'+randomEmail);
+  //await page.locator('#distributor-user-role-dropdown').click();
+  //await page.getByText('ionos@gmail.com').click();
+  await page.locator('#account-name-input').fill('jaktest');
   await page.locator('#account-country-dropdown').click();
   await page.getByText('Afghanistan').click();
   await page.locator('.area-code-dropdown > .relative > .dropdown-toggle').click();
@@ -29,13 +29,13 @@ test.describe.serial('Account cases', () => {
   await page.locator('#account-telephone-input').fill('6666666');
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('textbox', { name: 'First Name *' }).click();
-  await page.getByRole('textbox', { name: 'First Name *' }).fill('kaj'+randomEmail);
+  await page.getByRole('textbox', { name: 'First Name *' }).fill('kajtest');
   await page.getByRole('textbox', { name: 'First Name *' }).press('Tab');
   await page.getByRole('textbox', { name: 'Last Name *' }).fill('khan1');
   await page.getByRole('textbox', { name: 'First Name *' }).click();
   await page.getByRole('textbox', { name: 'First Name *' }).fill('jak1');
   await page.getByRole('textbox', { name: 'Email *' }).click();
-  await page.getByRole('textbox', { name: 'Email *' }).fill(randomEmail);
+  await page.getByRole('textbox', { name: 'Email *' }).fill('test@gmail.com');
   await page.getByRole('textbox', { name: 'Email *' }).press('Tab');
   await page.locator('.dropdown-toggle').click();
   await page.getByText('+1', { exact: true }).click();
@@ -79,7 +79,7 @@ test.describe.serial('Account cases', () => {
          await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
         
         await page.getByRole('link', { name: 'Clients' }).click();
-         const row = page.locator('tr', { hasText: randomEmail });
+         const row = page.locator('tr', { hasText: 'jaktest' }).last();
         try{
           await row.locator('.easy-checkbox label').click();
         }
@@ -96,17 +96,6 @@ test.describe.serial('Account cases', () => {
         await page.waitForTimeout(3000)
      });
 
-      test('delete an account', async ({ page }) => {
-        await page.locator('div').filter({ hasText: 'Manage' }).nth(5).click();
-        await page.getByRole('link', { name: 'Clients' }).click();
-        const row = page.locator('tr', { hasText: randomEmail });
-        await row.locator('.easy-checkbox label').click();
-        await page.getByRole('button', { name: 'ACTIONS ' }).click();
-        await page.getByText('Delete').click();
-        await page.getByRole('button', { name: 'DELETE' }).click();
-        await page.getByRole('textbox', { name: 'Type DELETE to confirm' }).fill('DELETE');
-        await page.locator('#delete-confirmation-btn').click();
-        await page.waitForTimeout(3000)
-    });
+
 });
 

@@ -14,7 +14,7 @@ test.describe.serial('Server cases', () => {
 
     test('add a server', async ({ page }) => {
         test.setTimeout(60000)
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(3000);
         await page.getByText('Resources').click();
         await page.getByText('Infrastructure', { exact: true }).click();
         await page.getByRole('link', { name: 'Servers' }).click();
@@ -52,7 +52,7 @@ test.describe.serial('Server cases', () => {
         await page.getByRole('button', { name: 'Deploy Server' }).click();
         
         //await page.locator('.status-badge__text', { hasText: 'RUNNING' }).waitFor({ timeout: 30000 });
-       await page.waitForTimeout(30000)
+       await page.waitForTimeout(40000)
        //await expect(page.locator('.status-badge__text')).toHaveText('RUNNING', {timeout:15000})
     });
 
