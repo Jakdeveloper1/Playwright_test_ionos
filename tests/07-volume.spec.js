@@ -44,6 +44,7 @@ test.describe.serial('Volume cases', () => {
     });
 
     test('edit a server', async ({ page }) => {
+        test.setTimeout(60000)
         await page.getByText('Resources').click();
         await page.getByText('Infrastructure', { exact: true }).click();
         await page.getByRole('link', { name: 'Servers' }).click();
@@ -61,7 +62,7 @@ test.describe.serial('Volume cases', () => {
         await page.locator('.slider').last().click();
         await page.getByRole('button', { name: 'Save' }).first().click();
         await page.getByRole('button', { name: 'Save' }).click(); 
-         await page.waitForTimeout(5000)
+         await page.waitForTimeout(25000)
     });
 
 

@@ -58,35 +58,35 @@ test.describe.serial('Server cases', () => {
 
     
 
-    test('edit a server', async ({ page }) => {
-        await page.getByText('Resources').click();
-        await page.getByText('Infrastructure', { exact: true }).click();
-        await page.getByRole('link', { name: 'Servers' }).click();
-        await page.getByRole('row', { name: 'test'}).locator('label').last().click();
+    // test('edit a server', async ({ page }) => {
+    //     await page.getByText('Resources').click();
+    //     await page.getByText('Infrastructure', { exact: true }).click();
+    //     await page.getByRole('link', { name: 'Servers' }).click();
+    //     await page.getByRole('row', { name: 'test'}).locator('label').last().click();
             
-        await page.getByRole('button', { name: 'ACTIONS ' }).click();
-        await page.getByText('Edit').click();
-        await page.getByRole('button', { name: 'Next' }).click();
-        //await page.locator('.size-tab').click();
-        //await page.locator('.plan-card').first().click();
+    //     await page.getByRole('button', { name: 'ACTIONS ' }).click();
+    //     await page.getByText('Edit').click();
+    //     await page.getByRole('button', { name: 'Next' }).click();
+    //     //await page.locator('.size-tab').click();
+    //     //await page.locator('.plan-card').first().click();
 
-        await page.getByRole('slider').fill('15');
-        await page.getByRole('button', { name: 'Service Plans' }).click();
-        await page.getByText('SmallvCPU: 1RAM: 2 GBStorage').click();
-        await page.getByRole('button', { name: 'Next' }).click();
-        await page.getByRole('button', { name: 'ADD STORAGE/CD-ROM' }).click();
-        await page.locator('.image-tab').last().click();
-        await page.locator('.image-card').click();
-        await page.getByRole('button', { name: 'ADD' }).last().click();
+    //     await page.getByRole('slider').fill('15');
+    //     await page.getByRole('button', { name: 'Service Plans' }).click();
+    //     await page.getByText('SmallvCPU: 1RAM: 2 GBStorage').click();
+    //     await page.getByRole('button', { name: 'Next' }).click();
+    //     await page.getByRole('button', { name: 'ADD STORAGE/CD-ROM' }).click();
+    //     await page.locator('.image-tab').last().click();
+    //     await page.locator('.image-card').click();
+    //     await page.getByRole('button', { name: 'ADD' }).last().click();
 
-        await page.getByRole('button', { name: 'Next' }).click();
+    //     await page.getByRole('button', { name: 'Next' }).click();
         
-        await page.getByRole('button', { name: 'Add NIC' }).click();
-        await page.locator('.slider').last().click();
-        await page.getByRole('button', { name: 'Save' }).first().click();
-        await page.getByRole('button', { name: 'Save' }).click(); 
-         await page.waitForTimeout(5000)
-    });
+    //     await page.getByRole('button', { name: 'Add NIC' }).click();
+    //     await page.locator('.slider').last().click();
+    //     await page.getByRole('button', { name: 'Save' }).first().click();
+    //     await page.getByRole('button', { name: 'Save' }).click(); 
+    //      await page.waitForTimeout(5000)
+    // });
 
     
     
